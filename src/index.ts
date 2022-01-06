@@ -26,4 +26,6 @@ app.post('/', async (req, res) => {
   res.send(pdf)
 })
 
-export default app
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`)
+})
