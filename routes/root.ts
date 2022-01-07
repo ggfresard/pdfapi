@@ -1,14 +1,12 @@
-import express from 'express'
-import dotenv from 'dotenv'
-dotenv.config()
-
+import { Router } from 'express'
 import puppeteer from 'puppeteer'
 
-const app = express()
-app.use(express.json())
-const PORT = process.env.PORT || 5000
+const router = Router()
 
-app.post('/', async (req, res) => {
+router.get('/', (req, res) => {
+  res.send('Welcome to the PDF generator API')
+})
+router.post('/', async (req, res) => {
   console.log(req.body)
   const { markup, format } = req.body
   if (!markup) {
@@ -26,6 +24,4 @@ app.post('/', async (req, res) => {
   res.send(pdf)
 })
 
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`)
-})
+export default router
